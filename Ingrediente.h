@@ -1,6 +1,5 @@
 #ifndef INGREDIENTE_H
 
-
 #include <string>
 
 class Ingrediente {
