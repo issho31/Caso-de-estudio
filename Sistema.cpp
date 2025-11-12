@@ -43,12 +43,19 @@ bool Sistema::registrarProduccion(std::string nombreReceta, int cantidad) {
         return false;
     }
 
+    // Correción verifica antes si hay suficientes ingredientes
     auto ingredientesReceta = receta->getIngredientes();
     for (const auto& par : ingredientesReceta) {
         Ingrediente* ing = inventario->obtenerIngrediente(par.first);
-        if (ing) {
-            ing->consumir(par.second * cantidad);
+        if (!ing || ing->getCantidad() < par.second * cantidad) {
+            return false;
         }
+    }
+
+    // Ahora si consume los ingredientes
+    for (const auto& par : ingredientesReceta) {
+        Ingrediente* ing = inventario->obtenerIngrediente(par.first);
+        ing->consumir(par.second * cantidad);
     }
 
     ProductoTerminado* producto = new ProductoTerminado(nombreReceta, cantidad);
