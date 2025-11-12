@@ -4,8 +4,11 @@
 Inventario::Inventario() {}
 
 Inventario::~Inventario() {
-    // Error: no libera la memoria de stock
     for (auto& par : ingredientes) {
+        delete par.second;
+    }
+    // Correcion ahora también va a liberar memoria de stock
+    for (auto& par : stock) {
         delete par.second;
     }
 }
