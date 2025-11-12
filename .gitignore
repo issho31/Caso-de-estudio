@@ -1,0 +1,29 @@
+# Ejecutables
+*.exe
+*.out
+panaderia
+
+# Archivos objeto
+*.o
+*.obj
+
+# Archivos de compilación
+*.a
+*.so
+*.dll
+
+# Directorios de build
+build/
+bin/
+obj/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
