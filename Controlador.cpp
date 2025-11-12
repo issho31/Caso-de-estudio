@@ -12,38 +12,8 @@ Controlador::Controlador() {
 
 Controlador::~Controlador() {
     delete sistema;
-}
-
-void Controlador::iniciar() {
-    Vista::mostrarMensaje("Bienvenido a El Buen Trigo");
-    seleccionarUsuario();
-    ejecutarMenu();
-}
-
-void Controlador::seleccionarUsuario() {
-    Vista::limpiarPantalla();
-    std::cout << "\n=== SELECCION DE USUARIO ===" << std::endl;
-    std::cout << "1. Panadero" << std::endl;
-    std::cout << "2. Encargado de Inventario" << std::endl;
-    std::cout << "3. Administrador" << std::endl;
-    
-    int opcion = Vista::leerEntero("Seleccione tipo de usuario: ");
-    std::string nombre = Vista::leerString("Ingrese su nombre: ");
-    
-    switch(opcion) {
-        case 1:
-            usuarioActual = new Panadero(nombre);
-            break;
-        case 2:
-            usuarioActual = new EncargadoInventario(nombre);
-            break;
-        case 3:
-            usuarioActual = new Administrador(nombre);
-            break;
-        default:
-            Vista::mostrarError("Opcion invalida");
-            seleccionarUsuario();
-    }
+    delete usuarioActual;  
+    // Correcion pequeña libera memoria del usuario
 }
 
 void Controlador::ejecutarMenu() {
@@ -55,10 +25,35 @@ void Controlador::ejecutarMenu() {
         usuarioActual->mostrarMenu();
         opcion = Vista::leerEntero("\nSeleccione opcion: ");
         
-        if (opcion == 0) {
-            Vista::mostrarMensaje("Hasta luego!");
-        } else {
-            Vista::mostrarError("Funcionalidad en desarrollo");
+        // Correcion opciones más completas para segun tipo de usuario
+        if (Panadero* p = dynamic_cast<Panadero*>(usuarioActual)) {
+            switch(opcion) {
+                case 1: p->registrarReceta(sistema); break;
+                case 2: p->registrarProduccion(sistema); break;
+                case 3: p->consultarStock(sistema); break;
+                case 0: Vista::mostrarMensaje("Hasta luego!"); break;
+                default: Vista::mostrarError("Opcion invalida");
+            }
+        } else if (EncargadoInventario* e = dynamic_cast<EncargadoInventario*>(usuarioActual)) {
+            switch(opcion) {
+                case 1: e->registrarIngrediente(sistema); break;
+                case 2: e->consultarInventario(sistema); break;
+                case 3: e->verAlertas(sistema); break;
+                case 4: e->verResumen(sistema); break;
+                case 0: Vista::mostrarMensaje("Hasta luego!"); break;
+                default: Vista::mostrarError("Opcion invalida");
+            }
+        } else if (Administrador* a = dynamic_cast<Administrador*>(usuarioActual)) {
+            switch(opcion) {
+                case 1: a->verResumen(sistema); break;
+                case 2: {
+                    std::string archivo = Vista::leerString("Nombre del archivo: ");
+                    a->exportarReporte(sistema, archivo);
+                    break;
+                }
+                case 0: Vista::mostrarMensaje("Hasta luego!"); break;
+                default: Vista::mostrarError("Opcion invalida");
+            }
         }
         
         if (opcion != 0) Vista::pausar();
