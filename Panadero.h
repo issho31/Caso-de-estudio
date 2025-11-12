@@ -2,7 +2,7 @@
 #define PANADERO_H
 
 #include "Usuario.h"
-// Error: falta #include "Sistema.h"
+#include "Sistema.h"
 
 class Panadero : public Usuario {
 public:
