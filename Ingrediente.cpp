@@ -24,8 +24,12 @@ void Ingrediente::setCantidad(double cantidad) {
 }
 
 bool Ingrediente::consumir(double cantidad) {
-    cantidadDisponible -= cantidad;
-    return true;
+    if (cantidadDisponible >= cantidad) {
+        cantidadDisponible -= cantidad;
+        return true;
+        //Cambio para verificar antes de consumir
+    }
+    return false;
 }
 
 bool Ingrediente::estaDebajoDeMinimoStock() const {
