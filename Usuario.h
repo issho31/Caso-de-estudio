@@ -3,6 +3,28 @@
 
 #include <string>
 
+/*
+===============================================================================
+                            CRC - USUARIO
+===============================================================================
+Clase:
+    Usuario
+
+Responsabilidades:
+    - Definir estructura base para todos los tipos de usuario.
+    - Almacenar nombre y tipo de usuario.
+    - Declarar método virtual puro mostrarMenu() para polimorfismo.
+    - Proveer acceso a nombre y tipo mediante getters.
+
+Colaboradores:
+    - Panadero 
+    - EncargadoInventario 
+    - Administrador
+    - Controlador
+===============================================================================
+*/
+
+
 class Usuario {
 protected:
     std::string nombre;

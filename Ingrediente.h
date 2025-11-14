@@ -3,6 +3,31 @@
 
 #include <string>
 
+/*
+===============================================================================
+                            CRC - INGREDIENTE
+===============================================================================
+Clase:
+    Ingrediente
+
+Responsabilidades:
+    - Almacenar información de un ingrediente:
+        * nombre
+        * unidadMedida
+        * cantidadDisponible
+        * nivelMinimo
+    - Controlar el consumo de cantidad disponible validando suficiencia.
+    - Verificar si la cantidad está debajo del nivel mínimo de stock.
+    - Actualizar cantidad disponible.
+    - Proveer acceso a los datos mediante métodos getters.
+
+Colaboradores:
+    - Inventario
+===============================================================================
+*/
+
+
+
 class Ingrediente {
 private:
     std::string nombre;

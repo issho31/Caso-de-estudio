@@ -6,6 +6,33 @@
 #include <map>
 #include <vector>
 
+/*
+===============================================================================
+                            CRC - SISTEMA
+===============================================================================
+Clase:
+    Sistema
+
+Responsabilidades:
+    - Coordinar las operaciones principales del sistema.
+    - Crear y gestionar instancia única de Inventario.
+    - Gestionar colección de recetas (agregar, obtener, eliminar, listar).
+    - Registrar producción de panes:
+        * Validar existencia de receta
+        * Verificar disponibilidad de ingredientes ANTES de consumir
+        * Consumir ingredientes del inventario
+        * Agregar productos terminados al stock
+    - Proveer acceso al inventario mediante getter.
+    - Liberar memoria dinámica de inventario y recetas en destructor.
+
+Colaboradores:
+    - Inventario
+    - Receta
+    - ProductoTerminado
+    - Controlador
+===============================================================================
+*/
+
 class Sistema {
 private:
     Inventario* inventario;

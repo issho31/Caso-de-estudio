@@ -3,6 +3,26 @@
 
 #include <string>
 
+/*
+===============================================================================
+                            CRC - PRODUCTOTERMINADO
+===============================================================================
+Clase:
+    ProductoTerminado
+
+Responsabilidades:
+    - Almacenar el tipo de producto terminado (tipo de pan).
+    - Mantener la cantidad en stock del producto.
+    - Agregar unidades al stock tras producción.
+    - Reducir unidades del stock validando disponibilidad.
+    - Garantizar que la cantidad no sea negativa.
+
+Colaboradores:
+    - Inventario
+===============================================================================
+*/
+
+
 class ProductoTerminado {
 private:
     std::string tipoProducto;
